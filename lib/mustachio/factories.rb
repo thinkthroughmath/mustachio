@@ -31,7 +31,7 @@ Magickly.add_convert_factory :mustachify do |c|
       # of the upper lip, and the bottom-center of the stache
       # is mapped to the center of the mouth
 
-      rotation = Math.atan(( face['mouth_right']['y'] - face['mouth_left']['y'] ).to_f / ( face['mouth_right']['x'] - face['mouth_left']['x'] ).to_f ) / Math::PI * 180.0
+      rotation = 90.0 - (Math.atan(( face['mouth_center']['y'] - face['nose']['y'] ).to_f / ( face['mouth_center']['x'] - face['nose']['x'] ).to_f ) / Math::PI * 180.0)
       desired_height = Math.sqrt(
                                  ( face['nose']['x'] - face['mouth_center']['x'] ).to_f**2 +
                                  ( face['nose']['y'] - face['mouth_center']['y'] ).to_f**2
