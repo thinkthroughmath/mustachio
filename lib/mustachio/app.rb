@@ -9,11 +9,6 @@ module Mustachio
     set :static, true
     use Rack::Attack
 
-    configure :production do
-      require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
-    end
-
-
     def redirect_to_canonical_host
       app_host = ENV['MUSTACHIO_APP_DOMAIN']
       if app_host && request.host != app_host

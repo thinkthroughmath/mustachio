@@ -7,7 +7,7 @@ require File.join(File.dirname(__FILE__), 'mustachio', 'shortcuts')
 
 module Mustachio
 #  FACE_POS_ATTRS = ['center', 'eye_left', 'eye_right', 'mouth_left', 'mouth_center', 'mouth_right', 'nose']
-  REQUIRED_FACE_ATTRS = %w(mouth_left mouth_right nose)
+  REQUIRED_FACE_ATTRS = %w(mouth_center nose)
   FACE_SPAN_SCALE = 2.0
 
   class << self
@@ -72,7 +72,7 @@ module Mustachio
       # TODO: make more robust by filtering out faces without all data
       new_faces = faces.map do |face|
         face_arr = face.map do |k, v|
-          [k, { 'x' => (v['x'] * (width / 100.0)), 'y' => (v['y'] * (height / 100.0)) }]
+          [k, { 'x' => (v['x'].to_f * (width.to_f / 100.0)), 'y' => (v['y'].to_f * (height.to_f / 100.0)) }]
         end
         Hash[face_arr]
       end
