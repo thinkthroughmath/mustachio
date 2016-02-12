@@ -27,19 +27,7 @@ module Mustachio
         json = self.get_response file
         self.validate_response(json)
 
-        json['photos'].first['tags'].map do |entry|
-          width = entry['width']
-          height = entry['height']
-
-          mouth_center, nose = entry.values_at('mouth_center', 'nose').map do |dims|
-            {
-              'x' => ((dims['x'].to_f / width.to_f) * 100.0),
-              'y' => ((dims['y'].to_f / height.to_f) * 100.0)
-            }
-          end
-
-          { 'mouth_center' => mouth_center, 'nose' => nose }
-        end
+        json['photos'].first['tags'].map {|entry| entry.slice('mouth_center', 'nose')}
       end
     end
   end

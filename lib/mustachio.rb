@@ -72,7 +72,7 @@ module Mustachio
       # TODO: make more robust by filtering out faces without all data
       new_faces = faces.map do |face|
         face_arr = face.map do |k, v|
-          [k, { 'x' => (v['x'] * (width / 100.0)), 'y' => (v['y'] * (height / 100.0)) }]
+          [k, { 'x' => (v['x'].to_f * (width.to_f / 100.0)), 'y' => (v['y'].to_f * (height.to_f / 100.0)) }]
         end
         Hash[face_arr]
       end
